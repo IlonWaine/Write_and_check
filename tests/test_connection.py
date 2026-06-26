@@ -9,15 +9,15 @@ def test_writer_connection():
     try:
         # Простий тест на звичайний текст
         response = writer_llm.invoke("Привіт! Дай відповідь одним словом 'Успіх'.")
-        logger.success("✅ Письменник відповів успішно!")
+        logger.success("Письменник відповів успішно!")
         logger.info(f"Відповідь моделі: {response.content.strip()}")
         return True
     except Exception as e:
-        logger.error(f"❌ Помилка підключення Письменника: {e}")
+        logger.error(f"Помилка підключення Письменника: {e}")
         return False
 
 def test_critic_structured_connection():
-    logger.info("⚡ Перевірка підключення Критика (critic_llm) + Structured Output...")
+    logger.info("Перевірка підключення Критика (critic_llm) + Structured Output...")
     try:
         # Тестове повідомлення у форматі списку словників (як ми зафіксили раніше)
         test_messages = [
@@ -34,21 +34,21 @@ def test_critic_structured_connection():
         logger.info(f" - Suggestions (Зауваження): {result.suggestions}")
         return True
     except Exception as e:
-        logger.error(f"❌ Помилка Критика або структурованого виводу: {e}")
-        logger.warning("💡 Порада: якщо впав саме Критик, модель 'cohere/north-mini-code:free' "
+        logger.error(f"Помилка Критика або структурованого виводу: {e}")
+        logger.warning("Порада: якщо впав саме Критик, модель 'cohere/north-mini-code:free' "
                        "може погано підтримувати функцію інструментів (Tool Calling). "
                        "Спробуй змінити модель для Критика на 'meta-llama/llama-3.3-70b-instruct:free'.")
         return False
 
 if __name__ == "__main__":
     print("=" * 60)
-    print("🏁 ПОЧАТОК ТЕСТУВАННЯ З'ЄДНАННЯ З OPENROUTER 🏁")
+    print("🏁ПОЧАТОК ТЕСТУВАННЯ З'ЄДНАННЯ З OPENROUTER")
     print("=" * 60)
     
     # Перевіримо взагалі наявність ключа в системі
     key = os.getenv('KEY')
     if not key:
-        logger.critical("❌ Помилка: Змінна оточення 'KEY' порожня! Перевір свій .env файл.")
+        logger.critical("Помилка: Змінна оточення 'KEY' порожня! Перевір свій .env файл.")
     else:
         logger.info(f"Ключ знайдено (довжина: {len(key)} символів). Починаємо запити...")
         
@@ -58,7 +58,7 @@ if __name__ == "__main__":
         
         print("=" * 60)
         if writer_ok and critic_ok:
-            logger.success("🎉 ВСІ ТЕСТИ ПРОЙДЕНО! Можна запускати основний граф (main.py).")
+            logger.success("ВСІ ТЕСТИ ПРОЙДЕНО! Можна запускати основний граф (main.py).")
         else:
-            logger.error("🛑 Тестування завершилося з помилками. Виправ конфіг перед запуском графа.")
+            logger.error("Тестування завершилося з помилками. Виправ конфіг перед запуском графа.")
     print("=" * 60)
