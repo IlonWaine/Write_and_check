@@ -1,4 +1,4 @@
-# AI Email Writer & Critic Agent (Ельф-коректор)
+# AI Email Writer & Critic Agent 
 
 An autonomous, multi-agent AI pipeline designed to draft, critique, and refine professional emails. Built using **LangGraph**, **LangChain**, and **FastAPI**, this project demonstrates a production-grade architecture that ensures output quality through a cyclical **Writer-Critic loop** with resilient, cross-provider fallback mechanisms.
 
@@ -38,18 +38,26 @@ The workflow represents a classic cyclical state graph that operates until a sto
 ## Project Structure
 
 ```text
-├── .github/
-│   └── workflows/
-│       └── test.yml          # GitHub Actions CI pipeline
-├── src/
-│   ├── connection.py         # LLM initializations and fallback logic
-│   ├── graph_and_ai.py       # LangGraph state machine & node logic
-│   ├── schemas.py            # Pydantic schemas and TypedDict states
-│   ├── main_api.py           # FastAPI application endpoints
-│   └── index.html            # Tailwind CSS single-page frontend
-├── test_main_api.py          # Pytest suite with HTTPX/Agent mocking
-├── requirements.txt          # Project dependencies
-└── .env                      # API Credentials (ignored by git)
+Write_and_check.git/
+    ├── .gitignore
+    ├── LICENSE
+    ├── README.md
+    ├── pyproject.toml
+    ├── requirements.txt
+    ├── src/
+    │   ├── __init__.py
+    │   ├── connection.py
+    │   ├── graph_and_ai.py
+    │   ├── index.html
+    │   ├── log_logic.py
+    │   ├── main_api.py
+    │   ├── schemas.py
+    └── tests/
+        ├── test_connection.py
+        ├── test_graph_and_ai.py
+        └── test_main_api.py
+```
+---
 
 ## ⚡ Installation & Setup
 
@@ -57,22 +65,32 @@ The workflow represents a classic cyclical state graph that operates until a sto
 ```bash
 git clone [https://github.com/yourusername/email-writer-critic-agent.git](https://github.com/yourusername/email-writer-critic-agent.git)
 cd email-writer-critic-agent
+```
 
 ### 2. Set up virtual environment
+```bash
 conda create -n agent_one python=3.11
 conda activate agent_one
 pip install -r requirements.txt
+```
 
 ### 3. Set up environment variables
+Inside your .env file paste your openrouter-key
+```bash
 KEY=sk-or-v1-...your-openrouter-key...
-GOOGLE_KEY=AIzaSy...your-google-gemini-key...
+```
+
+---
 
 ## Run and test aplication 
 
 ### 1. Run project at localhost 
-```Run this command at project root (terminal)
+Run this command at project root (terminal)
+```bash
 python src/main_api.py
-
+```
 ### 1. Test project
-```Run this command at project root (terminal)
+Run this command at project root (terminal)
+```bash 
 python -m pytest
+```

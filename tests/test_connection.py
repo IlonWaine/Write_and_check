@@ -5,7 +5,7 @@ from src.connection import writer_llm, critic_llm
 from src.schemas import Critic_schema
 
 def test_writer_connection():
-    logger.info("⚡ Перевірка підключення Письменника (writer_llm)...")
+    logger.info("Перевірка підключення Письменника (writer_llm)...")
     try:
         # Простий тест на звичайний текст
         response = writer_llm.invoke("Привіт! Дай відповідь одним словом 'Успіх'.")
@@ -42,7 +42,7 @@ def test_critic_structured_connection():
 
 if __name__ == "__main__":
     print("=" * 60)
-    print("🏁ПОЧАТОК ТЕСТУВАННЯ З'ЄДНАННЯ З OPENROUTER")
+    print("ПОЧАТОК ТЕСТУВАННЯ З'ЄДНАННЯ З OPENROUTER")
     print("=" * 60)
     
     # Перевіримо взагалі наявність ключа в системі
